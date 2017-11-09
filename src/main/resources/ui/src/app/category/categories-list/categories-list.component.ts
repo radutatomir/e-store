@@ -1,10 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {DataSource} from "@angular/cdk/collections";
 import {Category} from "../category";
-import {Observable} from "rxjs/Observable";
-import "rxjs/add/observable/of";
+import { Observable } from 'rxjs/Observable'
 import {CategoryService} from "../category.service";
-import 'rxjs/Rx';
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Component({
   selector: 'app-categories-list',
@@ -13,35 +12,37 @@ import 'rxjs/Rx';
 })
 export class CategoriesListComponent implements OnInit {
 
-  displayedColumns = ['id', 'name', 'edit'];
-  dataSource = new CategoryDataSource(this.categoryService);
+  dataSubject: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
 
-  categories : Category[];
+  displayedColumns = ['id', 'name', 'description', 'edit', 'delete'];
+  dataSource = new CategoryDataSource(this.dataSubject);
 
-  constructor(private categoryService : CategoryService) { }
+  categories: Category[];
+
+  constructor(private categoryService: CategoryService) {
+  }
 
   ngOnInit() {
-    this.categoryService.getCategories().subscribe(res => {
-      this.categories = res['_embedded'];
-    });
+    this.categoryService.getCategories().subscribe(res => this.dataSubject.next(res));
+  }
+
+  deleteCategory(category: Category) {
+    this.categoryService.deleteCategory(category).subscribe(() => this.ngOnInit())
   }
 
 }
 
-const data : Category[] = [{
-  id : 1,
-  name : 'Laptop'
-}];
-
 export class CategoryDataSource extends DataSource<Category> {
 
-  constructor(private categoryService : CategoryService) {
+  constructor(private dataSubject: BehaviorSubject<Category[]>) {
     super();
   }
 
   connect(): Observable<Category[]> {
-    return this.categoryService.getCategories().map(res => res['_embedded']['categories']);
+    return this.dataSubject.asObservable();
+
   }
 
-  disconnect(): void { }
+  disconnect(): void {
+  }
 }

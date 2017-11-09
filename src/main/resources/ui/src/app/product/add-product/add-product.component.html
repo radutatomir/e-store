@@ -1,0 +1,18 @@
+<form class="add-entity-form" (ngSubmit)="onSubmit(productForm)" #productForm="ngForm">
+
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Product name" [(ngModel)]="product.name" name="name" required>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-select placeholder="Category" [(ngModel)]="product.category" name="category" required>
+      <mat-option *ngFor="let category of categories" [value]="category">{{ category.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="button-row">
+    <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">Save</button>
+    <button mat-raised-button type="button" (click)="productForm.reset()">Clear</button>
+    <a mat-raised-button routerLink="/products" color="warn">Cancel</a>
+  </div>
+</form>

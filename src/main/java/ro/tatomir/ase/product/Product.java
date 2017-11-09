@@ -8,6 +8,7 @@ import javax.persistence.*;
  * Created by Radu.Tatomir on 11/7/2017.
  */
 @Entity
+@Table(name = "product")
 public class Product {
 
     @Id
@@ -15,7 +16,7 @@ public class Product {
     private Long id;
     private String name;
     @ManyToOne
-    @JoinColumn(name = "ID", insertable = false, updatable = false)
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public Product() {

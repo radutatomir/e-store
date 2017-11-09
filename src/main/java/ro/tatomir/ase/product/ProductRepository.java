@@ -1,11 +1,12 @@
 package ro.tatomir.ase.product;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by Radu.Tatomir on 11/7/2017.
  */
-@RepositoryRestResource(collectionResourceRel = "products", path = "products")
-public interface ProductRepository extends PagingAndSortingRepository<Product, Long> {
+@Repository
+public interface ProductRepository extends PagingAndSortingRepository<Product, Long>, JpaRepository<Product, Long> {
 }

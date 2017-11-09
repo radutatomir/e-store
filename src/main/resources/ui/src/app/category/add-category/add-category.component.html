@@ -1,7 +1,12 @@
-<form class="example-form" (ngSubmit)="onSubmit(categoryForm)" #categoryForm="ngForm">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Company name" [(ngModel)]="category.name" name="name" required>
+<form class="add-entity-form" (ngSubmit)="onSubmit(categoryForm)" #categoryForm="ngForm">
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Category name" [(ngModel)]="category.name" name="name" required>
   </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Description" [(ngModel)]="category.description" name="description" required>
+  </mat-form-field>
+
   <div class="button-row">
     <button mat-raised-button color="primary" type="submit" [disabled]="categoryForm.invalid">Save</button>
     <button mat-raised-button type="button" (click)="categoryForm.reset()">Clear</button>

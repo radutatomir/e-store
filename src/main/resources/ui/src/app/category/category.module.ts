@@ -19,7 +19,8 @@ import { EditCategoryComponent } from './edit-category/edit-category.component';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   declarations: [CategoriesListComponent, AddCategoryComponent, EditCategoryComponent],
   exports: [CategoriesListComponent, AddCategoryComponent],

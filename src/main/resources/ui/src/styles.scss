@@ -1,2 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+$marginTop : 20px;
+
+.add-entity-form,
+.edit-entity-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+
+  .full-width {
+    width: 100%;
+  }
+}
+
+.container {
+  margin-top: $marginTop;
+}
+
+.table-container {
+  margin-top: $marginTop;
+}

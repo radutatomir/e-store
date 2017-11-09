@@ -21,9 +21,7 @@ export class AddCategoryComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.categoryService.saveCategory(this.category)
-      .subscribe(res => {
-        console.log(res);
+    this.categoryService.saveCategory(this.category).subscribe(res => {
         this.router.navigate(['/categories']);
       });
   }

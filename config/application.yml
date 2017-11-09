@@ -1,4 +1,3 @@
-
 spring:
   h2:
     console:
@@ -13,4 +12,4 @@ spring:
     hibernate:
       ddl-auto: validate
 server:
-  context-path: /api
+  context-path: /store
