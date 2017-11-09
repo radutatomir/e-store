@@ -1,0 +1,33 @@
+<div class="container">
+  <a mat-raised-button routerLink="new" color="primary">New</a>
+
+  <div class="table-container mat-elevation-z2">
+    <mat-table #table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let category"> {{category.id}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let category"> {{category.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+        <mat-cell *matCellDef="let category">
+
+          <a mat-icon-button [routerLink]="[category.id]">
+            <mat-icon>edit</mat-icon>
+          </a>
+
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+
+</div>
