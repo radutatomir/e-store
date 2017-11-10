@@ -5,6 +5,14 @@
   </mat-form-field>
 
   <mat-form-field class="full-width">
+    <input matInput placeholder="Description" [(ngModel)]="product.description" name="description" required>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input type="number" matInput placeholder="Price" [(ngModel)]="product.price" name="price" required>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
     <mat-select placeholder="Category" [(ngModel)]="product.category" name="category" required>
       <mat-option *ngFor="let category of categories" [value]="category">{{ category.name }}</mat-option>
     </mat-select>

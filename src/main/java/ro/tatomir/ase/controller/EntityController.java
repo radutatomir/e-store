@@ -6,15 +6,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ro.tatomir.ase.model.StoreEntityModel;
 import ro.tatomir.ase.utils.NullAwareBeanUtils;
 
-import javax.ws.rs.Path;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
  * Created by Radu.Tatomir on 11/9/2017.
  */
-public class EntityController<T> {
+public class EntityController<T extends StoreEntityModel> {
 
     private final JpaRepository<T, Long> repository;
 
@@ -34,17 +35,19 @@ public class EntityController<T> {
 
     @RequestMapping(method = RequestMethod.POST)
     public T createEntity(@RequestBody T entity) {
+        entity.setCreatedAt(LocalDateTime.now());
         return repository.saveAndFlush(entity);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<T> updateEntity(@PathVariable("id") Long id,
-                                            @RequestBody T updates) {
+                                          @RequestBody T updates) {
         if (!repository.exists(id)) {
             return ResponseEntity.notFound().build();
         }
         T old = repository.findOne(id);
         NullAwareBeanUtils.copyNonNullProperties(updates, old);
+        old.setUpdatedAt(LocalDateTime.now());
         T updated = repository.saveAndFlush(old);
         return ResponseEntity.ok(updated);
     }

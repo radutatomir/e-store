@@ -1,6 +1,10 @@
-<mat-toolbar>
+<mat-toolbar class="mat-elevation-z2" color="primary">
   eStore
-
-  <a mat-button routerLink="categories">Categories</a>
-  <a mat-button routerLink="products">Products</a>
+  <a mat-button routerLink="catalog">Catalog</a>
+  <span class="example-spacer"></span>
+  <button mat-button [matMenuTriggerFor]="menu">Admin</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['categories']">Categories</button>
+    <button mat-menu-item [routerLink]="['products']">Products</button>
+  </mat-menu>
 </mat-toolbar>

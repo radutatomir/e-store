@@ -14,7 +14,7 @@ export class CategoriesListComponent implements OnInit {
 
   dataSubject: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
 
-  displayedColumns = ['id', 'name', 'description', 'edit', 'delete'];
+  displayedColumns = ['id', 'name', 'description', 'productsCount', 'edit', 'delete'];
   dataSource = new CategoryDataSource(this.dataSubject);
 
   categories: Category[];

@@ -14,6 +14,8 @@ import {environment} from "../environments/environment";
 import {APP_BASE_HREF} from "@angular/common";
 import {NgModule} from "@angular/core";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {CatalogModule} from "./catalog/catalog.module";
+import {CatalogComponent} from "./catalog/catalog/catalog.component";
 
 @NgModule({
   declarations: [
@@ -23,7 +25,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     RouterModule.forRoot([
       {
         path: '',
-        redirectTo: '/categories',
+        redirectTo: '/catalog',
         pathMatch: 'full'
       }, {
         path: 'categories',
@@ -61,13 +63,20 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         data: {
           state: 'products.id'
         }
+      }, {
+        path: 'catalog',
+        component: CatalogComponent,
+        data: {
+          state: 'catalog'
+        }
       }
     ]),
     BrowserModule,
     NavigationModule,
     CategoryModule,
     BrowserAnimationsModule,
-    ProductModule
+    ProductModule,
+    CatalogModule
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: environment.baseHref}

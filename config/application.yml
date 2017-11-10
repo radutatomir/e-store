@@ -11,5 +11,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
 server:
   context-path: /store

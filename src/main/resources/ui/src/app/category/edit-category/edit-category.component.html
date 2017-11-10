@@ -1,5 +1,7 @@
 <div class="container" *ngIf="category">
   <h4>ID : {{category.id}}</h4>
+  <h5>Created at : {{category.createdAt | date: 'dd/MM/yyyy HH:mm:ss'}}</h5>
+  <h5>Updated at : {{category.updatedAt | date: 'dd/MM/yyyy HH:mm:ss'}}</h5>
   <form class="edit-entity-form" (ngSubmit)="onSubmit(categoryForm)" #categoryForm="ngForm">
     <mat-form-field class="full-width">
       <input matInput placeholder="Category name" [(ngModel)]="category.name" name="name" required>
